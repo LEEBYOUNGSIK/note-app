@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  notes     Note[]
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String?
+  content   String   @default("")
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parentId  String?
+  date      DateTime @default(now()) // 일정 날짜 (날짜만 사용, 시간은 무시)
+  priority  Int      @default(1) // 등급: 0=낮음, 1=일반, 2=주요, 3=긴급
+  status    String   @default("not_started") // 진행상태: not_started(미시작), in_progress(진행), completed(완료)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
