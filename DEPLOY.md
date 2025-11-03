@@ -179,3 +179,4 @@ npm start
 - `NEXTAUTH_SECRET` 설정 확인
 - `NEXTAUTH_URL`이 프로덕션 URL과 일치하는지 확인
 
+
