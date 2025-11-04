@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
-    "build:deploy": "prisma generate && prisma migrate deploy && next build",
+    "build": "prisma generate && prisma migrate deploy && next build --webpack",
+    "build:deploy": "prisma generate && prisma migrate deploy && next build --webpack",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "start": "next start",
